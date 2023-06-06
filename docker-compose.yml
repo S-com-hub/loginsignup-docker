@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  admin:
+    # image: ${CONTAINER_REGISTRY}/admin
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    expose:
+      - 3000
+    
+    volumes:
+      - ./admin:/W-A-S/admin
+      - /W-A-S/admin/node_modules
+    ports:
+      - "3000:3000"
+
+  
+  server:
+    # image: ${CONTAINER_REGISTRY}/api-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - ./server:/W-A-S/server
+      - /W-A-S/server/node_modules
+    expose:
+      - 9001
+
+ 
+    ports:
+      - "9001:9001"
+ 
